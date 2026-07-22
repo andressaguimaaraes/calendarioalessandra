@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Calendário de Posts · Alessandra Belfort Bueno</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Helvetica, Arial, sans-serif;
+    background: #ffffff;
+    color: #37352f;
+    line-height: 1.5;
+    padding: 60px 40px;
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+  h1 {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+  .subtitle {
+    color: #6b7280;
+    font-size: 15px;
+    margin-bottom: 32px;
+  }
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 40px 0 12px;
+    color: #6941c6;
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 20px 0 8px;
+    color: #37352f;
+  }
+  p { margin-bottom: 8px; font-size: 14.5px; }
+
+  .callout {
+    background: #ede4f5;
+    border-radius: 4px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  .callout .callout-header {
+    font-weight: 700;
+    color: #6941c6;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .legend-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 20px 0 30px;
+  }
+  .legend-item {
+    border-radius: 4px;
+    padding: 14px;
+    font-size: 13.5px;
+  }
+  .legend-item .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+    color: #ffffff;
+  }
+  .legend-item.neurolaw { background: #ede4f5; }
+  .legend-item.neurolaw .tag { background: #6941c6; }
+  .legend-item.genero { background: #fbe9e9; }
+  .legend-item.genero .tag { background: #b7282e; }
+  .legend-item.neutralidade { background: #fdf6e0; }
+  .legend-item.neutralidade .tag { background: #a17f2a; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 40px;
+    font-size: 13.5px;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  th {
+    background: #37352f;
+    color: #ffffff;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  td {
+    padding: 12px;
+    border-bottom: 1px solid #efefef;
+    vertical-align: top;
+  }
+  tr:hover td { background: #fafaf9; }
+
+  .pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    color: #ffffff;
+  }
+  .pill.neurolaw { background: #6941c6; }
+  .pill.genero { background: #b7282e; }
+  .pill.neutralidade { background: #a17f2a; }
+
+  .fmt {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    background: #efefef;
+    color: #37352f;
+  }
+
+  .status {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  .status.rascunho { background: #f1f1ef; color: #6b7280; }
+  .status.pronto { background: #ddedea; color: #0f7a5a; }
+  .status.postar { background: #fef3c7; color: #a17f2a; }
+
+  .col-day { width: 90px; font-weight: 600; color: #6941c6; }
+  .col-tema { width: 110px; }
+  .col-fmt { width: 90px; }
+  .col-status { width: 90px; }
+  .col-cta { width: 200px; font-style: italic; color: #4a3a1c; font-size: 12.5px; }
+
+  .week-header {
+    background: #f5f0e2;
+    color: #37352f;
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 4px;
+    margin: 32px 0 8px;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Calendário de Posts · Alessandra Belfort Bueno</h1>
+<p class="subtitle">Juíza Federal · Pesquisadora em Psicologia Forense · TRF2 · 4 semanas · 16 posts</p>
+
+<div class="callout">
+  <div class="callout-header">Como usar</div>
+  <p>Ciclo de 4 semanas de conteúdo autoral. 4 posts por semana, alternando entre os 3 temas-âncora. Comece pelas segundas (post âncora da semana) e vá cobrindo os outros dias. Marque o <strong>status</strong> à medida que produzir. A meta é ter 2 semanas produzidas antes de a primeira ir ao ar.</p>
+</div>
+
+<h2>Temas-âncora</h2>
+<div class="legend-grid">
+  <div class="legend-item neurolaw">
+    <span class="tag">Neurolaw</span>
+    <p>Como o cérebro decide. Pesquisa empírica em psicologia judicial. Damasio, Danziger, Kahneman. Tema autoral principal.</p>
+  </div>
+  <div class="legend-item genero">
+    <span class="tag">Viés de Gênero</span>
+    <p>O que a pesquisa mostra sobre gênero no ambiente jurídico. Interrupções, tempo de fala, teto invisível, linguagem.</p>
+  </div>
+  <div class="legend-item neutralidade">
+    <span class="tag">Neutralidade</span>
+    <p>A ilusão da imparcialidade absoluta. Reframe da imparcialidade como consciência da subjetividade, não ausência dela.</p>
+  </div>
+</div>
+
+<!-- SEMANA 1 -->
+<div class="week-header">SEMANA 1 · AQUECIMENTO</div>
+<p style="font-size:13px; color:#6b7280; margin-bottom:12px;">Objetivo: apresentar-se à audiência sem vender. Provocar identificação com a dor central (perder causa sem entender).</p>
+
+<table>
+<thead>
+<tr>
+  <th class="col-day">Dia</th>
+  <th class="col-tema">Tema</th>
+  <th class="col-fmt">Formato</th>
+  <th>Título / Hook</th>
+  <th class="col-cta">CTA</th>
+  <th class="col-status">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td class="col-day">Seg</td>
+  <td><span class="pill neurolaw">Neurolaw</span></td>
+  <td><span class="fmt">Reel · 45s</span></td>
+  <td><strong>"Você já perdeu uma causa que era pra ser ganha?"</strong><br><span style="color:#6b7280;">Abertura com pergunta + pausa + revelação: existe um sistema que a faculdade nunca ensinou.</span></td>
+  <td class="col-cta">"Comenta PESQUISA se você quer o paper Danziger 2011."</td>
+  <td><span class="status rascunho">Rascunho</span></td>
+</tr>
+<tr>
+  <td class="col-day">Qua</td>
+  <td><span class="pill neurolaw">Neurolaw</span></td>
+  <td><span class="fmt">Carrossel · 6</span></td>
+  <td><strong>"5 mitos sobre como juízes decidem — e o que a pesquisa mostra"</strong><br><span style="color:#6b7280;">Um mito por slide, com dado empírico contradizendo. Fecha com bordão "O juiz também é humano".</span></td>
+  <td class="col-cta">"Salva e compartilha com o advogado que precisa ver isso."</td>
+  <td><span class="status rascunho">Rascunho</span></td>
+</tr>
+<tr>
+  <td class="col-day">Sex</td>
+  <td><span class="pill neutralidade">Neutralidade</span></td>
+  <td><span class="fmt">Story · seq. 4</span></td>
+  <td><strong>Manifesto: "A toga não apaga a humanidade do juiz"</strong><br><span style="color:#6b7280;">Sequência com fundo escuro + frase de manifesto por story. Termina com pergunta.</span></td>
+  <td class="col-cta">Enquete: "Você acredita que juiz decide só pela lei?" (Sim / Não)</td>
+  <td><span class="status rascunho">Rascunho</span></td>
+</tr>
+<tr>
+  <td class="col-day">Dom</td>
+  <td><span class="pill neurolaw">Neurolaw</span></td>
+  <td><span class="fmt">Story · caixinha</span></td>
+  <td><strong>"Manda sua maior dúvida sobre psicologia judicial"</strong><br><span style="color:#6b7280;">Abrir espaço pra pauta. Recolher perguntas pra usar como pauta das semanas seguintes.</span></td>
+  <td class="col-cta">Caixinha aberta — "responderei as 3 mais votadas em Reel".</td>
+  <td><span class="status rascunho">Rascunho</span></td>
+</tr>
+</tbody>
+</table>
+
+<!-- SEMANA 2 -->
+<div class="week-header">SEMANA 2 · APROFUNDA</div>
+<p style="font-size:13px; color:#6b7280; margin-bottom:12px;">Objetivo: mostrar densidade autoral. Dado + pesquisa + interpretação. Começa a diferenciar a Alessandra de perfis genéricos.</p>
+
+<table>
+<thead>
+<tr>
+  <th class="col-day">Dia</th>
+  <th class="col-tema">Tema</th>
+  <th class="col-fmt">Formato</th>
+  <th>Título / Hook</th>
+  <th class="col-cta">CTA</th>
+  <th class="col-status">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td class="col-day">Seg</td>
+  <td><span class="pill neurolaw">Neurolaw</span></td>
+  <td><span class="fmt">Reel · 60s</span></td>
+  <td><strong>"O estudo Danziger em 60 segundos: 65% x 0%"</strong><br><span style="color:#6b7280;">Explicação do paper sobre paroles: aprovação cai de 65% para próximo de 0% conforme o dia avança.</span></td>
+  <td class="col-cta">"Se você quer ler o paper original, comenta CAFÉ que te mando."</td>
+  <td><span class="status rascunho">Rascunho</span></td>
+</tr>
+<tr>
+  <td class="col-day">Qua</td>
+  <td><span class="pill genero">Viés de Gênero</span></td>
+  <td><span class="fmt">Carrossel · 8</span></td>
+  <td><strong>"Advogada firme = agressiva. Advogado firme = autoridade."</strong><br><span style="color:#6b7280;">Paradoxo da assertividade com dados de Heilman e Williams. Cada slide um par de leituras opostas.</span></td>
+  <td class="col-cta">"Marca uma colega advogada que já viveu isso."</td>
+  <td><span class="status rascunho">Rascunho</span></td>
+</tr>
+<tr>
+  <td class="col-day">Sex</td>
+  <td><span class="pill neutralidade">Neutralidade</span></td>
+  <td><span class="fmt">Reel · 45s</span></td>
+  <td><strong>"O juiz mais perigoso não é o que tem viés — é o que jura não ter"</strong><br><span style="color:#6b7280;">Formato Modelo 3 (contra-argumento com frase de impacto). Alta retenção — começa pela ruptura.</span></td>
+  <td class="col-cta">"Comenta CONCORDO ou DISCORDO — vamos conversar."</td>
+  <td><span class="status rascunho">Rascunho</span></td>
+</tr>
+<tr>
+  <td class="col-day">Sáb</td>
+  <td><span class="pill neurolaw">Neurolaw</span></td>
+  <td><span class="fmt">Story · bastidor</span></td>
+  <td><strong>Bastidor: "Como estudo casos de decisão judicial na hora do café"</strong><br><span style="color:#6b7280;">Autoridade humanizada. Foto/vídeo da mesa, dos papers, do caderno. Faz a pesquisa parecer viva.</span></td>
+  <td class="col-cta">Enquete: "Estudo é sobre técnica ou sobre método?"</td>
+  <td><span class="status rascunho">Rascunho</span></td>
+</tr>
+</tbody>
+</table>
+
+<!-- SEMANA 3 -->
+<div class="week-header">SEMANA 3 · PROVOCA</div>
+<p style="font-size:13px; color:#6b7280; margin-bottom:12px;">Objetivo: gerar debate. Assumir posições nítidas. É a semana em que os salvos e compartilhamentos disparam.</p>
+
+<table>
+<thead>
+<tr>
+  <th class="col-day">Dia</th>
+  <th class="col-tema">Tema</th>
+  <th class="col-fmt">Formato</th>
+  <th>Título / Hook</th>
+  <th class="col-cta">CTA</th>
+  <th class="col-status">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td class="col-day">Seg</td>
+  <td><span class="pill neurolaw">Neurolaw</span></td>
+  <td><span class="fmt">Carrossel · 5</span></td>
+  <td><strong>"Por que a IA não pode substituir o juiz (ainda)"</strong><br><span style="color:#6b7280;">4 argumentos + 1 provocação final: "IA substitui o que o juiz fingia ser, não o que ele é."</span></td>
+  <td class="col-cta">"Comenta IA se quer o próximo carrossel sobre COMPAS."</td>
+  <td><span class="status rascunho">Rascunho</span></td>
+</tr>
+<tr>
+  <td class="col-day">Qua</td>
+  <td><span class="pill genero">Viés de Gênero</span></td>
+  <td><span class="fmt">Reel · 30s</span></td>
+  <td><strong>"Advogada é interrompida 2,3x mais que advogado — em audiência"</strong><br><span style="color:#6b7280;">Dado seco, curto, direto. Fecha com "Alguém precisa começar a contar." — chamado à ação.</span></td>
+  <td class="col-cta">"Se você já viveu, deixa uma palavra: VIVI."</td>
+  <td><span class="status rascunho">Rascunho</span></td>
+</tr>
+<tr>
+  <td class="col-day">Qui</td>
+  <td><span class="pill neutralidade">Neutralidade</span></td>
+  <td><span class="fmt">Story · caixinha</span></td>
+  <td><strong>"Me perguntaram: como faço pra ter mais consistência nas minhas decisões?"</strong><br><span style="color:#6b7280;">Formato Modelo 2 (resposta de caixinha) aplicado. Termina com "acontece comigo também".</span></td>
+  <td class="col-cta">Story final: "Quer mais respostas como essa? Manda mais na caixinha."</td>
+  <td><span class="status rascunho">Rascunho</span></td>
+</tr>
+<tr>
+  <td class="col-day">Dom</td>
+  <td><span class="pill neurolaw">Neurolaw</span></td>
+  <td><span class="fmt">Reel · 60s</span></td>
+  <td><strong>"3 fatores que influenciam a sentença — e não estão nos autos"</strong><br><span style="color:#6b7280;">Hora do dia · estado emocional · ordem dos casos. Um por bloco de 15s. Bordão de fechamento.</span></td>
+  <td class="col-cta">"Salva pra usar antes da próxima audiência."</td>
+  <td><span class="status rascunho">Rascunho</span></td>
+</tr>
+</tbody>
+</table>
+
+<!-- SEMANA 4 -->
+<div class="week-header">SEMANA 4 · CONVITE</div>
+<p style="font-size:13px; color:#6b7280; margin-bottom:12px;">Objetivo: consolidar autoridade e sinalizar disponibilidade. Aparece o convite para palestra (sem forçar venda).</p>
+
+<table>
+<thead>
+<tr>
+  <th class="col-day">Dia</th>
+  <th class="col-tema">Tema</th>
+  <th class="col-fmt">Formato</th>
+  <th>Título / Hook</th>
+  <th class="col-cta">CTA</th>
+  <th class="col-status">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td class="col-day">Seg</td>
+  <td><span class="pill neutralidade">Neutralidade</span></td>
+  <td><span class="fmt">Reel · 45s</span></td>
+  <td><strong>"O que os autos não explicam" — depoimento pessoal</strong><br><span style="color:#6b7280;">Câmera aberta. "Passei 20 anos do outro lado da mesa. Hoje eu volto..." Formato narrativa.</span></td>
+  <td class="col-cta">"DM: quer trazer essa conversa pro seu escritório ou instituição?"</td>
+  <td><span class="status rascunho">Rascunho</span></td>
+</tr>
+<tr>
+  <td class="col-day">Qua</td>
+  <td><span class="pill neurolaw">Neurolaw</span></td>
+  <td><span class="fmt">Carrossel · 7</span></td>
+  <td><strong>"Aula magna: O Juiz Também É Humano — o que vou contar"</strong><br><span style="color:#6b7280;">Prévia dos 4 blocos GROW da palestra. Termina com convite para agenda.</span></td>
+  <td class="col-cta">"Link na bio para agendar palestra na sua instituição."</td>
+  <td><span class="status rascunho">Rascunho</span></td>
+</tr>
+<tr>
+  <td class="col-day">Sex</td>
+  <td><span class="pill genero">Viés de Gênero</span></td>
+  <td><span class="fmt">Reel · 45s</span></td>
+  <td><strong>"Não é sobre ser mulher no Direito. É sobre o Direito fingir que isso não importa."</strong><br><span style="color:#6b7280;">Bordão forte da palestra de gênero. Câmera fixa, tom firme, curto.</span></td>
+  <td class="col-cta">"Comenta AMÉM ou marca uma colega." — abre engajamento.</td>
+  <td><span class="status rascunho">Rascunho</span></td>
+</tr>
+<tr>
+  <td class="col-day">Dom</td>
+  <td><span class="pill neurolaw">Neurolaw</span></td>
+  <td><span class="fmt">Story · bastidor</span></td>
+  <td><strong>Bastidor: preparação da palestra + caixinha</strong><br><span style="color:#6b7280;">Mostra o processo — slides, ensaio, cronometragem. Humaniza a autoridade.</span></td>
+  <td class="col-cta">Caixinha: "Onde você quer que eu leve essa palestra?"</td>
+  <td><span class="status rascunho">Rascunho</span></td>
+</tr>
+</tbody>
+</table>
+
+<!-- FECHAMENTO -->
+<div class="callout" style="background:#fdf6e0; border-left:4px solid #c9a961; margin-top:40px;">
+  <div class="callout-header" style="color:#a17f2a;">Regras do calendário</div>
+  <p><strong>Distribuição temática:</strong> 50% Neurolaw · 25% Viés de Gênero · 25% Neutralidade. Neurolaw é o principal — é a tese autoral. Os outros dois orbitam.</p>
+  <p><strong>Distribuição de formato:</strong> 40% Reel · 30% Carrossel · 30% Story. Reel gera alcance, carrossel gera salvamento, story gera vínculo.</p>
+  <p><strong>Distribuição de CTA:</strong> 60% engajamento (comenta / marca) · 20% salvamento · 20% ação (DM / bio / caixinha). Só a semana 4 tem CTA de conversão.</p>
+</div>
+
+</body>
+</html>
